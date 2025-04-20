@@ -28,6 +28,7 @@ imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', '
 dockerImageList = [('pytorch')]
 workflow = ['Vitis', 'Vitis-AI']
 toolVersion = ['2023.1'] 
+shell = ['QDMA', 'XDMA']
 
 pc.defineParameter("nodes","List of nodes",
                    portal.ParameterType.STRING,"",
@@ -42,6 +43,11 @@ pc.defineParameter("toolVersion", "Tool Version",
                    portal.ParameterType.STRING,
                    toolVersion[0], toolVersion,
                    longDescription="Select a tool version (only applicable for Vitis flow).")   
+
+pc.defineParameter("shell", "Shell",
+                   portal.ParameterType.STRING,
+                   shell[0], shell,
+                   longDescription="Select a shell (only applicable for Vitis flow).")   
 
 pc.defineParameter("osImage", "Select Image",
                    portal.ParameterType.IMAGE,
@@ -77,7 +83,7 @@ for nodeName in nodeList:
     host.disk_image = params.osImage
 
     if params.workflow == 'Vitis':
-        host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot-vitis.sh " + params.toolVersion + "  >> /local/logs/output_log.txt"))
+        host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot-vitis.sh " + params.toolVersion + params.shell + "  >> /local/logs/output_log.txt"))
     elif params.workflow == 'Vitis-AI':  
         host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot-vitis-ai.sh " + params.dockerImage + " >> /local/logs/output_log.txt"))
     # Since we want to create network links to the FPGA, it has its own identity.
