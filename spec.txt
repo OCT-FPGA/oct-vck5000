@@ -1,4 +1,4 @@
 ## 2023.1
 2023.1_ubuntu-20.04_QDMA:XRT_PACKAGE=xrt_202310.2.15.225_20.04-amd64-xrt.deb;SHELL_PACKAGE=xilinx-vck5000-gen4x8-qdma-base_2-20221205_all.deb.tar.gz;DSA=xilinx_vck5000_gen4x8_qdma_base_2;IMAGE_TAG=alveo-2023.1-ubuntu-20.04;PACKAGE_NAME=xilinx-vck5000-gen4x8-qdma-base;PACKAGE_VERSION=2-20221205;XRT_VERSION=2.15.225;
 
-2023.1_ubuntu-20.04_XDMA:XRT_PACKAGE=xrt_202310.2.15.225_20.04-amd64-xrt.deb;SHELL_PACKAGE=xilinx-vck5000-gen4x8-qdma-base_2-20221205_all.deb.tar.gz;DSA=xilinx_vck5000_gen4x8_qdma_base_2;IMAGE_TAG=alveo-2023.1-ubuntu-20.04;PACKAGE_NAME=xilinx-vck5000-gen4x8-qdma-base;PACKAGE_VERSION=2-20221205;XRT_VERSION=2.15.225;
+2023.1_ubuntu-20.04_XDMA:XRT_PACKAGE=xrt_202310.2.15.225_20.04-amd64-xrt.deb;SHELL_PACKAGE=xilinx-vck5000-gen4x8-xdma-base_2-20220513_all.deb;DSA=xilinx-vck5000-gen4x8-xdma-base_2;IMAGE_TAG=alveo-2023.1-ubuntu-20.04;PACKAGE_NAME=xilinx-vck5000-gen4x8-xdma-base;PACKAGE_VERSION=2-20221205;XRT_VERSION=2.15.225;
