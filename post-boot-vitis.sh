@@ -135,6 +135,9 @@ FACTORY_SHELL="xilinx_vck5000"
 NODE_ID=$(hostname | cut -d'.' -f1)
 #PCI_ADDR=$(lspci -d 10ee: | awk '{print $1}' | head -n 1)
 
+echo "Tool version: $TOOLVERSION"
+echo "Shell: $SHELL"
+
 detect_cards
 check_xrt
 if [ $? == 0 ]; then
