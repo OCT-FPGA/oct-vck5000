@@ -83,7 +83,7 @@ for nodeName in nodeList:
     host.disk_image = params.osImage
 
     if params.workflow == 'Vitis':
-        host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot-vitis.sh " + params.toolVersion + params.shell + "  >> /local/logs/output_log.txt"))
+        host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot-vitis.sh " + params.toolVersion + " " + params.shell + "  >> /local/logs/output_log.txt"))
     elif params.workflow == 'Vitis-AI':  
         host.addService(pg.Execute(shell="bash", command="sudo /local/repository/post-boot-vitis-ai.sh " + params.dockerImage + " >> /local/logs/output_log.txt"))
     # Since we want to create network links to the FPGA, it has its own identity.
