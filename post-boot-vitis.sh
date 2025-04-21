@@ -62,6 +62,8 @@ install_vck5000_shell() {
             echo "Untar the package. "
             tar xzvf $SHELL_BASE_PATH/$TOOLVERSION/$OSVERSION/$SHELL_PACKAGE -C /tmp/
             rm /tmp/$SHELL_PACKAGE
+        else
+            cp $SHELL_BASE_PATH/$TOOLVERSION/$OSVERSION/$SHELL_PACKAGE /tmp/
         fi
         echo "Install Shell"
         if [[ "$OSVERSION" == "ubuntu-20.04" ]] || [[ "$OSVERSION" == "ubuntu-22.04" ]]; then
@@ -71,7 +73,7 @@ install_vck5000_shell() {
             echo "Install CentOS shell package"
             yum install -y /tmp/xilinx*
         fi
-        rm /tmp/xilinx*
+        #rm /tmp/xilinx*
     else
         echo "The package is already installed. "
     fi
