@@ -109,6 +109,16 @@ install_libs() {
     sudo $VITIS_BASE_PATH/$VITISVERSION/scripts/installLibs.sh
 }
 
+install_config_fpga() {
+    echo "Installing config-fpga."
+    cp $CONFIG_FPGA_PATH/* /usr/local/bin
+}
+
+disable_pcie_fatal_error() {
+    echo "Disabling PCIe fatal error reporting for node: $NODE_ID"
+    sudo /proj/octfpga-PG0/tools/pcie_disable_fatal.sh $PCI_ADDR
+}
+
 XRT_BASE_PATH="/proj/octfpga-PG0/tools/deployment/xrt"
 SHELL_BASE_PATH="/proj/octfpga-PG0/tools/deployment/vck5000"
 XBFLASH_BASE_PATH="/proj/octfpga-PG0/tools/xbflash"
@@ -156,6 +166,11 @@ else
 fi
 
 install_libs
+
+# Disable PCIe fatal error reporting
+disable_pcie_fatal_error 
+
+install_config_fpga
 
 check_shellpkg
 if [ $? == 0 ]; then
