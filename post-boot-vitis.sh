@@ -188,7 +188,7 @@ else
     if [ $? == 0 ]; then
         echo "Shell was successfully installed. Flashing..."
         flash_card
-        /usr/local/bin/post-boot-fpga
+        /usr/local/bin/post-boot-vck
         #echo "Cold rebooting..."
         #sudo -u geniuser perl /local/repository/cold-reboot.pl
     else
