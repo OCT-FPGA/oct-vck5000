@@ -119,7 +119,7 @@ disable_pcie_fatal_error() {
     sudo /proj/octfpga-PG0/tools/pcie_disable_fatal.sh $PCI_ADDR
 }
 
-XRT_BASE_PATH="/proj/octfpga-PG0/tools/deployment/xrt"
+XRT_BASE_PATH="/proj/octfpga-PG0/tools/deployment/vck5000/xrt"
 SHELL_BASE_PATH="/proj/octfpga-PG0/tools/deployment/vck5000"
 XBFLASH_BASE_PATH="/proj/octfpga-PG0/tools/xbflash"
 VITIS_BASE_PATH="/proj/octfpga-PG0/tools/Xilinx/Vitis"
