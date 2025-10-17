@@ -22,8 +22,8 @@ pc = portal.Context()
 request = pc.makeRequestRSpec()
 
 # Pick your image.
-imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', 'UBUNTU 20.04'),
-             ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD', 'UBUNTU 22.04')] 
+imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD', 'UBUNTU 22.04'),
+             ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', 'UBUNTU 20.04')] 
 
 dockerImageList = [('pytorch')]
 workflow = ['Vitis', 'Vitis-AI']
@@ -98,9 +98,9 @@ for nodeName in nodeList:
     # Secret sauce.
     #fpga.SubNodeOf(host)
 
-    host_iface1 = host.addInterface()
-    host_iface1.component_id = "eth2"
-    host_iface1.addAddress(pg.IPv4Address("192.168.40." + str(i+30), "255.255.255.0")) 
+    #host_iface1 = host.addInterface()
+    #host_iface1.component_id = "eth2"
+    #host_iface1.addAddress(pg.IPv4Address("192.168.40." + str(i+30), "255.255.255.0")) 
     #fpga_iface1 = fpga.addInterface()
     #fpga_iface1.component_id = "eth0"
     #fpga_iface1.addAddress(pg.IPv4Address("192.168.40." + str(i+10), "255.255.255.0"))
