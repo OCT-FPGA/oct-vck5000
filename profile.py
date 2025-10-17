@@ -66,7 +66,7 @@ params = pc.bindParameters()
   
 pc.verifyParameters()
 
-lan = request.LAN()
+#lan = request.LAN()
 
 nodeList = params.nodes.split(',')
 
