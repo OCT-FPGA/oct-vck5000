@@ -10,7 +10,7 @@ install_xrt() {
         apt install -y $XRT_BASE_PATH/$TOOLVERSION/$OSVERSION/$XRT_PACKAGE
     fi
     sudo bash -c "echo 'source /opt/xilinx/xrt/setup.sh' >> /etc/profile"
-    sudo bash -c "echo 'source $VITIS_BASE_PATH/$VITISVERSION/settings64.sh' >> /etc/profile"
+    sudo bash -c "echo 'source $VITIS_BASE_PATH/$TOOLVERSION/settings64.sh' >> /etc/profile"
 }
 
 install_shellpkg() {
@@ -106,24 +106,24 @@ detect_cards() {
 
 install_libs() {
     echo "Installing libs."
-    sudo $VITIS_BASE_PATH/$VITISVERSION/scripts/installLibs.sh
+    sudo $VITIS_BASE_PATH/$TOOLVERSION/scripts/installLibs.sh
 }
 
-install_config_fpga() {
-    echo "Installing config-fpga."
-    cp $CONFIG_FPGA_PATH/* /usr/local/bin
-}
+#install_config_fpga() {
+#    echo "Installing config-fpga."
+#    cp $CONFIG_FPGA_PATH/* /usr/local/bin
+#}
 
 disable_pcie_fatal_error() {
     echo "Disabling PCIe fatal error reporting for node: $NODE_ID"
-    sudo /proj/octfpga-PG0/tools/pcie_disable_fatal.sh $PCI_ADDR
+    sudo /share/tools/vck5000/pcie_disable_fatal.sh $PCI_ADDR $PCI_ADDR
 }
 
-XRT_BASE_PATH="/proj/octfpga-PG0/tools/deployment/vck5000/xrt"
-SHELL_BASE_PATH="/proj/octfpga-PG0/tools/deployment/vck5000"
-XBFLASH_BASE_PATH="/proj/octfpga-PG0/tools/xbflash"
-VITIS_BASE_PATH="/proj/octfpga-PG0/tools/Xilinx/Vitis"
-CONFIG_FPGA_PATH="/proj/octfpga-PG0/tools/post-boot"
+XRT_BASE_PATH="/share/tools/vck5000/deployment/xrt"
+SHELL_BASE_PATH="/share/tools/vck5000/deployment/shell"
+#XBFLASH_BASE_PATH="/proj/octfpga-PG0/tools/xbflash"
+VITIS_BASE_PATH="/share/tools/Xilinx/Vitis"
+#CONFIG_FPGA_PATH="/proj/octfpga-PG0/tools/post-boot"
 
 OSVERSION=`grep '^ID=' /etc/os-release | awk -F= '{print $2}'`
 OSVERSION=`echo $OSVERSION | tr -d '"'`
@@ -132,7 +132,6 @@ VERSION_ID=`echo $VERSION_ID | tr -d '"'`
 OSVERSION="$OSVERSION-$VERSION_ID"
 TOOLVERSION=$1
 SHELL=$2
-VITISVERSION="2023.1"
 SCRIPT_PATH=/local/repository
 COMB="${TOOLVERSION}_${OSVERSION}_${SHELL}"
 XRT_PACKAGE=`grep ^$COMB: $SCRIPT_PATH/spec.txt | awk -F':' '{print $2}' | awk -F';' '{print $1}' | awk -F= '{print $2}'`
@@ -170,7 +169,7 @@ install_libs
 # Disable PCIe fatal error reporting
 disable_pcie_fatal_error 
 
-install_config_fpga
+#install_config_fpga
 
 check_shellpkg
 if [ $? == 0 ]; then
@@ -187,10 +186,8 @@ else
     check_shellpkg
     if [ $? == 0 ]; then
         echo "Shell was successfully installed. Flashing..."
-        flash_card
-        /usr/local/bin/post-boot-vck
-        #echo "Cold rebooting..."
-        #sudo -u geniuser perl /local/repository/cold-reboot.pl
+        #flash_card
+        #/usr/local/bin/post-boot-vck
     else
         echo "Error: Shell installation failed."
         exit 1
