@@ -122,7 +122,7 @@ disable_pcie_fatal_error() {
 XRT_BASE_PATH="/share/tools/vck5000/deployment/xrt"
 SHELL_BASE_PATH="/share/tools/vck5000/deployment/shell"
 #XBFLASH_BASE_PATH="/proj/octfpga-PG0/tools/xbflash"
-VITIS_BASE_PATH="/share/tools/Xilinx/Vitis"
+VITIS_BASE_PATH="/share/Xilinx/Vitis"
 #CONFIG_FPGA_PATH="/proj/octfpga-PG0/tools/post-boot"
 
 OSVERSION=`grep '^ID=' /etc/os-release | awk -F= '{print $2}'`
