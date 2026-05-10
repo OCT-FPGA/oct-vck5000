@@ -27,7 +27,7 @@ imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD', '
 
 dockerImageList = [('pytorch')]
 workflow = ['Vitis', 'Vitis-AI']
-toolVersion = ['2023.1', '2022.1'] 
+toolVersion = ['2023.1', '2022.2', '2022.1'] 
 shell = ['QDMA', 'XDMA']
 
 pc.defineParameter("nodes","List of nodes",
