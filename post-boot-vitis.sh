@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+mount_filesystems() {
+    sudo mkdir -p /fpga/Intel /fpga/Xilinx /fpga/tools
+    sudo mount -t nfs ops.cloudlab.umass.edu:/fpga/tools /fpga/tools
+}
+
 install_xrt() {
     echo "Install XRT"
     if [[ "$OSVERSION" == "ubuntu-20.04" ]] || [[ "$OSVERSION" == "ubuntu-22.04" ]]; then
@@ -116,14 +121,12 @@ install_libs() {
 
 disable_pcie_fatal_error() {
     echo "Disabling PCIe fatal error reporting for node: $NODE_ID"
-    sudo /share/tools/vck5000/pcie_disable_fatal.sh $PCI_ADDR $PCI_ADDR
+    sudo /fpga/tools/vck5000/pcie_disable_fatal.sh $PCI_ADDR $PCI_ADDR
 }
 
-XRT_BASE_PATH="/share/tools/vck5000/deployment/xrt"
-SHELL_BASE_PATH="/share/tools/vck5000/deployment/shell"
-#XBFLASH_BASE_PATH="/proj/octfpga-PG0/tools/xbflash"
-VITIS_BASE_PATH="/share/Xilinx/Vitis"
-#CONFIG_FPGA_PATH="/proj/octfpga-PG0/tools/post-boot"
+XRT_BASE_PATH="/fpga/tools/vck5000/deployment/xrt"
+SHELL_BASE_PATH="/fpga/tools/vck5000/deployment/shell"
+VITIS_BASE_PATH="/fpga/Xilinx/Vitis"
 
 OSVERSION=`grep '^ID=' /etc/os-release | awk -F= '{print $2}'`
 OSVERSION=`echo $OSVERSION | tr -d '"'`
@@ -147,6 +150,7 @@ NODE_ID=$(hostname | cut -d'.' -f1)
 echo "Tool version: $TOOLVERSION"
 echo "Shell: $SHELL"
 
+mount_filesystems
 detect_cards
 check_xrt
 if [ $? == 0 ]; then
